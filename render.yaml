@@ -1,0 +1,12 @@
+services:
+  - type: worker                   # processo in background (niente porta HTTP)
+    name: r6-market-bot
+    runtime: python
+    plan: free                     # usa il tier gratuito
+    envVars:
+      - key: DISCORD_TOKEN         # li inserirai dal pannello Render
+        sync: false
+      - key: R6TRACKER_API_KEY
+        sync: false
+    buildCommand: pip install -r requirements.txt
+    startCommand: python r6_market_bot.py
